@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  metabase-mysql:
+    build: metabase/.
+    container_name: metabase-mysql
+    hostname: metabase-mysql
+    ports:
+      - 3000:3000
+    environment: 
+      - "MB_DB_CONNECTION_URI=mysql://your_MySQL_RDS_endpoint:3306/metabase?user=metabase&password=Metabot1&sslMode=VERIFY_CA&trustCertificateKeyStoreType=PKCS12&trustCertificateKeyStoreUrl=file:///app/certs/truststore.pkcs12&trustCertificateKeyStorePassword=supersecretpassword"
+    networks: 
+      - metanet1-mysql
+networks: 
+  metanet1-mysql:
+    driver: bridge
